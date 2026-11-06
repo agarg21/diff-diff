@@ -283,6 +283,9 @@ jobs:
           PYTHONPATH=. python -c "from diff_diff import HAS_RUST_BACKEND; print(f'HAS_RUST_BACKEND: {HAS_RUST_BACKEND}'); assert not HAS_RUST_BACKEND"
 
       - name: Run tests in pure Python mode
+        env:
+          OMP_NUM_THREADS: 1
+          OPENBLAS_NUM_THREADS: 1
         # Doc snippet tests own .github/workflows/docs-tests.yml; ignore
         # them here to keep one workflow per surface (this is the only
         # invocation that actually executes test_doc_snippets.py since
